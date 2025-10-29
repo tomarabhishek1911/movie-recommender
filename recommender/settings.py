@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 SECRET_KEY = 'django-insecure-s$9ve4gcik)vz22cjfxuyxkb#5n19k_#tm1b7!+97ww2wzxy)$'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['movie-recommender-gbqs.onrender.com', 'localhost', '127.0.0.1']
 
 
 # =========================

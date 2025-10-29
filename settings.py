@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c*s96zcz8hb7k$nq6qx0**_aic2k(wy7x!j$#fu26b_l2$)(el
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['movie-recommender-gbqs.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
