@@ -1,21 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login - Movie Recommender</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - MovieMate</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST">
+  <div class="container">
+    <h1 class="logo">🎬 MovieMate</h1>
+
+    <div class="form-box">
+      <h2>Login</h2>
+      <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter your username" required>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
 
-        <button type="submit">Login</button>
-    </form>
+        <button type="submit" class="btn">Login</button>
+      </form>
 
-    <p>Don’t have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+      <p>Don’t have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <p class="msg">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
 </body>
 </html>

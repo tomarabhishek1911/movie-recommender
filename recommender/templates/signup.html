@@ -1,24 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+{% load static %}
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Movie Recommender</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
 <body>
-    <h2>Sign Up</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Sign Up</h2>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error-message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
 
-        <label>Confirm Password:</label><br>
-        <input type="password" name="confirm_password" required><br><br>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                </div>
 
-        <button type="submit">Sign Up</button>
-    </form>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
 
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                <div class="form-group">
+                    <label>Confirm Password:</label>
+                    <input type="password" name="confirm_password" required>
+                </div>
+
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+
+            <p class="switch-link">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
