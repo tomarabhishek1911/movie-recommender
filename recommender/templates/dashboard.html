@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Movie Recommender</title>
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>🎬 Welcome, {{ username }}</h1>
+    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Upload Your Movie & Rating Datasets</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Movies CSV:</label>
+        <input type="file" name="movies_csv" accept=".csv" required><br><br>
+
+        <label>Ratings CSV:</label>
+        <input type="file" name="ratings_csv" accept=".csv" required><br><br>
+
+        <label>Choose Model:</label>
+        <select name="model_type">
+          <option value="random_forest">Random Forest</option>
+          <option value="decision_tree">Decision Tree</option>
+          <option value="gradient_boosting">Gradient Boosting</option>
+        </select><br><br>
+
+        <button type="submit">Train & Get Recommendations</button>
+      </form>
+    </section>
+
+    {% if recommendations %}
+    <section>
+      <h2>Recommended Movies</h2>
+      <ul>
+        {% for rec in recommendations %}
+          <li>{{ rec }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if accuracy %}
+    <section>
+      <p><strong>Model Accuracy:</strong> {{ accuracy|floatformat:2 }}</p>
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>

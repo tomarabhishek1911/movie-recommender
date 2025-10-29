@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <h2 class="logo">MovieMate 🎬</h2>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <span>Welcome, {{ user.username }}</span>
+                    <a href="{% url 'logout' %}" class="btn">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn">Login</a>
+                    <a href="{% url 'signup' %}" class="btn primary">Signup</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Discover Movies Tailored Just for You 🍿</h1>
+            <p>Get personalized recommendations based on your taste and viewing history.</p>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'signup' %}" class="cta-btn">Get Started</a>
+            {% else %}
+                <a href="{% url 'dashboard' %}" class="cta-btn">Find Recommendations</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 MovieMate. All rights reserved.</p>
+    </footer>
+</body>
+</html>
